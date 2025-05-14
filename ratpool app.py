@@ -1,5 +1,5 @@
 import streamlit as st
-from masters_prop_pool import evaluate_pool
+from 2025 PGA Championship import evaluate_pool
 
 st.title("🏆 Masters 2025 Prop Pool Leaderboard")
 
