@@ -1,7 +1,7 @@
 import streamlit as st
 from poolcode import evaluate_pool
 
-st.title("🏆 Masters 2025 Prop Pool Leaderboard")
+st.title("🏆 PGA Championship 2025 Pool Leaderboard")
 
 pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
 
