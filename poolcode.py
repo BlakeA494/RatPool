@@ -13,7 +13,7 @@ active_pool = "Framily"  # Change to "Queen's", or "Framily" as needed
 # === All participant picks across both pools ===
 participant_picks_all = {
     "Framily": {
-        "Blake": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Brooks Koepka", "Tier 4": "Jordan Spieth", "Tier 5": "Sepp Straka", "Tier 6": "Tony Finau",
+        "Blake": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Brooks Koepka", "Tier 4": "Shane Lowry", "Tier 5": "Sepp Straka", "Tier 6": "Tony Finau",
                   "Tier 7": "Patrick Reed", "Tier 8": "Adam Scott", "Tier 9": "Taylor Pendrith", "Tier 10": ["Lucas Glover", "Si Woo Kim"], "Top Amateur/CFT": "Tyler Collet"
         },
         "Bill": {"Tier 1": "Rory McIlroy", "Tier 2": "Justin Thomas", "Tier 3": "Jon Rahm", "Tier 4": "Jordan Spieth", "Tier 5": "Jason Day", "Tier 6": "Tony Finau",
@@ -25,22 +25,49 @@ participant_picks_all = {
         "Zach": {"Tier 1": "Scottie Scheffler", "Tier 2": "Ludvig Åberg", "Tier 3": "Jon Rahm", "Tier 4": "Corey Conners", "Tier 5": "Sepp Straka", "Tier 6": "Will Zalatoris",
                   "Tier 7": "Patrick Reed", "Tier 8": "Dustin Johnson", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Si Woo Kim", "Keegan Bradley"], "Top Amateur/CFT": "Ryan Lenahan"
         },
+        "Graydon": {"Tier 1": "Scottie Scheffler", "Tier 2": "Ludvig Åberg", "Tier 3": "Hideki Matsuyama", "Tier 4": "Viktor Hovland", "Tier 5": "Min Woo Lee", "Tier 6": "Russell Henley",
+                  "Tier 7": "Max Homa", "Tier 8": "Akshay Bhatia", "Tier 9": "Nick Taylor", "Tier 10": ["Lucas Glover", "Robert Macintyre"], "Top Amateur/CFT": "Justin Hicks"
+        },
+        "Shane": {"Tier 1": "Rory McIlroy", "Tier 2": "Bryson DeChambeau", "Tier 3": "Jon Rahm", "Tier 4": "Jordan Spieth", "Tier 5": "Min Woo Lee", "Tier 6": "Tony Finau",
+                  "Tier 7": "Cameron Smith", "Tier 8": "Adam Scott", "Tier 9": "Nick Taylor", "Tier 10": ["Cameron Davis", "Keegan Bradley"], "Top Amateur/CFT": "Jesse Droemer"
+        },
+        "Brandon": {"Tier 1": "Scottie Scheffler", "Tier 2": "Xander Schauffele", "Tier 3": "Brooks Koepka", "Tier 4": "Shane Lowry", "Tier 5": "Min Woo Lee", "Tier 6": "Will Zalatoris",
+                  "Tier 7": "Max Homa", "Tier 8": "Adam Scott", "Tier 9": "Nick Taylor", "Tier 10": ["Rickie Fowler", "Keegan Bradley"], "Top Amateur/CFT": "Dylan Newman"
+        },
+        "Jamie": {"Tier 1": "Scottie Scheffler", "Tier 2": "Justin Thomas", "Tier 3": "Brooks Koepka", "Tier 4": "Viktor Hovland", "Tier 5": "Justin Rose", "Tier 6": "Will Zalatoris",
+                  "Tier 7": "Patrick Reed", "Tier 8": "Dustin Johnson", "Tier 9": "Adam Hadwin", "Tier 10": ["Rickie Fowler", "Sergio Garcia"], "Top Amateur/CFT": "Tyler Collet"
+        }
     },
     "Queen's": {
-        "Blake": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Brooks Koepka", "Tier 4": "Jordan Spieth", "Tier 5": "Sepp Straka", "Tier 6": "Tony Finau",
-                  "Tier 7": "Patrick Reed", "Tier 8": "Adam Scott", "Tier 9": "Taylor Pendrith", "Tier 10": ["Lucas Glover", "Si Woo Kim"], "Top Amateur/CFT": "Tyler Collet"
+        "Blake": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Brooks Koepka", "Tier 4": "Jordan Spieth", "Tier 5": "Jason Day", "Tier 6": "Russell Henley",
+                  "Tier 7": "Sahith Theegala", "Tier 8": "Adam Scott", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Rickie Fowler", "Si Woo Kim"], "Top Amateur/CFT": "Tyler Collet"
         },
         "Zain": {"Tier 1": "Scottie Scheffler", "Tier 2": "Bryson DeChambeau", "Tier 3": "Hideki Matsuyama", "Tier 4": "Tommy Fleetwood", "Tier 5": "Min Woo Lee", "Tier 6": "Tony Finau",
                   "Tier 7": "Max Homa", "Tier 8": "Akshay Bhatia", "Tier 9": "Nick Taylor", "Tier 10": ["Cameron Young", "Rickie Fowler"], "Top Amateur/CFT": "Michael Block"
         },
         "Cam": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Joaquin Niemann", "Tier 4": "Corey Conners", "Tier 5": "Min Woo Lee", "Tier 6": "Wyndham Clark",
                   "Tier 7": "Cameron Smith", "Tier 8": "Akshay Bhatia", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Aaron Rai", "Phil Mickelson"], "Top Amateur/CFT": "Michael Block"
+        },
+        "Dylan": {"Tier 1": "Scottie Scheffler", "Tier 2": "Bryson DeChambeau", "Tier 3": "Hideki Matsuyama", "Tier 4": "Jordan Spieth", "Tier 5": "Justin Rose", "Tier 6": "Russell Henley",
+                  "Tier 7": "Patrick Reed", "Tier 8": "Matt Fitzpatrick", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Sam Burns", "Keegan Bradley"], "Top Amateur/CFT": "Greg Koch"
+        },
+        "McBurney": {"Tier 1": "Rory McIlroy", "Tier 2": "Justin Thomas", "Tier 3": "Brooks Koepka", "Tier 4": "Jordan Spieth", "Tier 5": "Min Woo Lee", "Tier 6": "Will Zalatoris",
+                  "Tier 7": "Patrick Reed", "Tier 8": "Akshay Bhatia", "Tier 9": "Taylor Pendrith", "Tier 10": ["Byeong-Hun An", "Sam Burns"], "Top Amateur/CFT": "Michael Block"
+        },
+        "Karyn": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Hideki Matsuyama", "Tier 4": "Corey Conners", "Tier 5": "Justin Rose", "Tier 6": "Tom Kim",
+                  "Tier 7": "Max Homa", "Tier 8": "Matt Fitzpatrick", "Tier 9": "Nick Taylor", "Tier 10": ["Rickie Fowler", "Sam Burns"], "Top Amateur/CFT": "Michael Block"
+        },
+        "Sean": {"Tier 1": "Scottie Scheffler", "Tier 2": "Justin Thomas", "Tier 3": "Hideki Matsuyama", "Tier 4": "Shane Lowry", "Tier 5": "Sepp Straka", "Tier 6": "Tom Kim",
+                  "Tier 7": "Sahith Theegala", "Tier 8": "Akshay Bhatia", "Tier 9": "Adam Hadwin", "Tier 10": ["Nicolai Højgaard", "Rasmus Højgaard"], "Top Amateur/CFT": "Larkin Gross"
+        },
+        "Shivam": {"Tier 1": "Rory McIlroy", "Tier 2": "Justin Thomas", "Tier 3": "Hideki Matsuyama", "Tier 4": "Corey Conners", "Tier 5": "Justin Rose", "Tier 6": "Will Zalatoris",
+                  "Tier 7": "Sahith Theegala", "Tier 8": "Akshay Bhatia", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Austin Eckroat", "Cameron Young"], "Top Amateur/CFT": "Rupe Taylor"
         }
     }
 }
 
 # === Fetch live leaderboard data from ESPN ===
-def fetch_masters_leaderboard_from_html(event_id="401703511"): #<-CHANGE THE TOURNAMENT ID BASED OFF ESPN WEBSITE***
+def fetch_leaderboard_from_html(event_id="401703511"): #<-CHANGE THE TOURNAMENT ID BASED OFF ESPN WEBSITE***
 ###################################################################################################################################################
     url = f"https://www.espn.com/golf/leaderboard?tournamentId={event_id}"
     headers = {
@@ -56,13 +83,12 @@ def fetch_masters_leaderboard_from_html(event_id="401703511"): #<-CHANGE THE TOU
 
     # Find all tables
     tables = soup.find_all('table')
-
-    if len(tables) < 2:
+    if len(tables) < 1:
         print("Could not find the main leaderboard table.")
         return pd.DataFrame()
-
-    # The second table is usually the full leaderboard
-    leaderboard_table = tables[1]
+    
+    # Find the leaderboard table (the first table) IF THERE IS A TIE/PLAYOFF #######################################################
+    leaderboard_table = tables[0]
 
     # Extract headers
     headers = [th.text.strip() for th in leaderboard_table.find_all('th')]
@@ -90,7 +116,7 @@ def format_position(position):
     return position.lstrip('T')
 
 # Example usage: Fetch live leaderboard data
-df = fetch_masters_leaderboard_from_html()
+df = fetch_leaderboard_from_html()
 
 # Parse the necessary columns for player names, scores, and positions
 player_stats_live = {}
@@ -208,8 +234,6 @@ for rank, (name, purse) in enumerate(leaderboard, start=1):
 
 ################################################################################################################################
 
-
-
 current_pool = "Framily" 
 
 prop_questions = [
@@ -226,15 +250,15 @@ prop_questions = [
 
 # Actual answers for scoring
 actual_answers = [
-    6,          #LIV players to make the cut
-    2,          #Canadian players to make the cut
-    3,          #LIV players in top 15 and ties
-    "No",       #Will there be a hole-in-one
-    3,          #What is the cutline
-    "-13",      #Winning score to par
-    2,          #Margin of victory
-    "No",      #First major?
-    "Spieth"     #Champion
+    5,          #LIV players to make the cut
+    1,          #Canadian players to make the cut
+    1,          #LIV players in top 15 and ties
+    "Yes",       #Will there be a hole-in-one
+    1,          #What is the cutline
+    "-5",       #Winning score to par
+    1,          #Margin of victory
+    "Yes",       #First major?
+    "Davis & Gerard"    #Champion
 ]
 
 # Participants' answers (compact format)
@@ -242,13 +266,22 @@ prop_answers = {
     "Queen's": {
         "Blake":   [6, 3, 3, "No", 3, -13, 2, "No", "Spieth"],
         "Zain":    [5, 3, 3, "Yes", -1, -8, 1, "Yes", "Fleetwood"],
-        "Cam":     [9, 3, 4, "No", 1, -16, 1, "No", "McIlroy"]
+        "Cam":     [9, 3, 4, "No", 1, -16, 1, "No", "McIlroy"],
+        "Dylan":   [7, 2, 4, "No", -2, -11, 2, "No", "Scheffler"],
+        "McBurney":[6, 2, 3, "No", 6, -5, 2, "No", "McIlroy"],
+        "Karyn":   [8, 2, 2, "No", 3, -13, 2, "No", "McIlroy"],
+        "Sean":    [4, 1, 2, "Yes", -2, -10, 2, "No", "Scheffler"],
+        "Shivam":  [4, 3, 1, "Yes", 3, -14, 2, "No", "Thomas"]
     },
     "Framily": {
         "Blake":   [6, 2, 3, "No", 3, -13, 2, "No", "Morikawa"],
         "Bill":    [4, 2, 3, "No", 3, -10, 2, "No", "McIlroy"],
         "Barry":   [10, 3, 3, "Yes", 5, -10, 2, "No", "McIlroy"],
-        "Zach":    [8, 3, 2, "Yes", 3, -13, 1, "No", "Åberg"]
+        "Zach":    [8, 3, 2, "Yes", 3, -13, 1, "No", "Åberg"],
+        "Graydon": [9, 3, 3, "No", 0, -19, 2, "No", "Scheffler"],
+        "Shane":   [8, 2, 3, "No", 2, -12, 2, "No", "McIlroy"],
+        "Brandon": [9, 3, 3, "No", 4, -13, 2, "No", "Koepka"],
+        "Jamie":   [9, 3, 5, "No", 2, -17, 2, "No", "Scheffler"]
     }
 }
 
