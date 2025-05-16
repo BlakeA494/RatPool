@@ -9,7 +9,7 @@ active_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
 
 if st.button("Show Leaderboard"):
     evaluate_pool(active_pool)
-
+'''
 import streamlit as st
 from poolcode import fetch_leaderboard_from_html  # assuming you renamed this properly
 
@@ -46,5 +46,5 @@ if st.button("Show Pick'em Leaderboard"):
 
 # Button to show Prop Bet Leaderboard
 if st.button("Show Prop Bet Leaderboard"):
-    run_prop_bet_leaderboard(active_pool)
+    run_prop_bet_leaderboard(active_pool)'''
 
