@@ -2,7 +2,7 @@
 
 import streamlit as st
 from poolcode import evaluate_pool
-'''
+
 st.title("🏆 PGA Championship 2025 Pool Leaderboard")
 
 active_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
@@ -29,7 +29,7 @@ if st.button("Show Leaderboard"):
         st.error("Could not load leaderboard data. Check event ID or ESPN site structure.")
     else:
         st.dataframe(df)  # Display it in Streamlit table
-'''
+
 
 import streamlit as st
 from poolcode import run_pickem_leaderboard, run_prop_bet_leaderboard
