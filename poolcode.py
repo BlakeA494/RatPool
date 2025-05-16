@@ -214,6 +214,7 @@ for name, picks in participant_picks.items():
                 print(f"  \t\t{player}: Score = {score}, Pos = {pos}, Purse = ${purse:,.2f}")
     print(f"\tTotal Purse for {name}: ${total_purse:,.2f}\n")
 
+#####################def run_pickem_leaderboard(active_pool):
 # === Leaderboard ===
 leaderboard = []
 for name, picks in participant_picks.items():
@@ -231,6 +232,13 @@ leaderboard.sort(key=lambda x: x[1], reverse=True)
 print(f"\n🏆 {active_pool} Pool Leaderboard 🏆")
 for rank, (name, purse) in enumerate(leaderboard, start=1):
     print(f"{rank}. {name} - ${purse:,.2f}")
+
+#################################################################################################
+'''
+st.write(f"🏆 {active_pool} Pool Leaderboard 🏆")
+for rank, (name, purse) in enumerate(leaderboard, start=1):
+    st.write(f"{rank}. {name} - ${purse:,.2f}")
+'''
 
 ################################################################################################################################
 
@@ -307,3 +315,18 @@ def evaluate_pool(pool_name):
         print(f"{rank}. {name} - {score} correct")
 
 evaluate_pool(active_pool) #(current_pool)
+
+####################################################
+'''
+import streamlit as st
+
+def run_pickem_leaderboard(active_pool):
+    # your leaderboard code — replace print() with st.write()
+    st.write(f"🏆 {active_pool} Pick'em Leaderboard 🏆")
+    # etc.
+
+def run_prop_bet_leaderboard(active_pool):
+    # your prop bet code — replace print() with st.write()
+    st.write(f"🏆 {active_pool} Prop Bet Leaderboard 🏆")
+    # etc.
+'''
