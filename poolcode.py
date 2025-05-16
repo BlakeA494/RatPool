@@ -234,7 +234,7 @@ for rank, (name, purse) in enumerate(leaderboard, start=1):
 
 ################################################################################################################################
 
-current_pool = "Framily" 
+#current_pool = "Framily" 
 
 prop_questions = [
     "How many LIV players will make the cut?",
@@ -306,4 +306,4 @@ def evaluate_pool(pool_name):
     for rank, (name, score) in enumerate(leaderboard, 1):
         print(f"{rank}. {name} - {score} correct")
 
-evaluate_pool(current_pool)
+evaluate_pool(active_pool) #(current_pool)
