@@ -8,7 +8,7 @@ from collections import defaultdict
 #In between these lines is everything that must be changed year-year
 
 # === CONFIG: TOGGLE BETWEEN POOLS HERE ===
-active_pool = "Queen's"  # Change to "Queen's", or "Framily" as needed
+active_pool = "Framily"  # Change to "Queen's", or "Framily" as needed
 
 # === All participant picks across both pools ===
 participant_picks_all = {
@@ -178,7 +178,7 @@ Payout = [
 ]
 
 # === Cut Line Threshold (Assuming 50th Place) ===
-CUT_LINE_POSITION = 70 #<-MAYBE CHECK THIS VALUE depending on ties ################################################################################
+CUT_LINE_POSITION = 74 #<-MAYBE CHECK THIS VALUE depending on ties ################################################################################
 
 # === Purse Calculation with Tie Handling ===
 position_groups = defaultdict(list)
@@ -279,3 +279,77 @@ def display_pickem_results(active_pool):
     for rank, (name, purse) in enumerate(leaderboard, start=1):
         st.markdown(f"**{rank}. {name}** — `${purse:,.2f}`")
 
+#################################################################################################################
+#current_pool = "Framily" 
+
+prop_questions = [
+    "How many LIV players will make the cut?",
+    "How many Canadian players will make the cut?",
+    "How many LIV players will be in the top 15 and ties?",
+    "Will there be a hole-in-one this week?",
+    "What will the cutline be?",
+    "What will be the winning score to par after all 4 days?",
+    "How large of a win margin will it be?",
+    "Will this be the winner's first major?",
+    "Who will win the 2025 PGA Championship?"
+]
+
+# Actual answers for scoring
+actual_answers = [
+    7,          #LIV players to make the cut
+    2,          #Canadian players to make the cut
+    2,          #LIV players in top 15 and ties
+    "Yes",       #Will there be a hole-in-one
+    1,          #What is the cutline
+    "-11",       #Winning score to par
+    3,          #Margin of victory
+    "No",       #First major?
+    "Scheffler"    #Champion
+]
+
+# Participants' answers (compact format)
+prop_answers = {
+    "Queen's": {
+        "Blake":   [6, 3, 3, "No", 3, -13, 2, "No", "Spieth"],
+        "Zain":    [5, 3, 3, "Yes", -1, -8, 1, "Yes", "Fleetwood"],
+        "Cam":     [9, 3, 4, "No", 1, -16, 1, "No", "McIlroy"],
+        "Dylan":   [7, 2, 4, "No", -2, -11, 2, "No", "Scheffler"],
+        "McBurney":[6, 2, 3, "No", 6, -5, 2, "No", "McIlroy"],
+        "Karyn":   [8, 2, 2, "No", 3, -13, 2, "No", "McIlroy"],
+        "Sean":    [4, 1, 2, "Yes", -2, -10, 2, "No", "Scheffler"],
+        "Shivam":  [4, 3, 1, "Yes", 3, -14, 2, "No", "Thomas"]
+    },
+    "Framily": {
+        "Blake":   [6, 2, 3, "No", 3, -13, 2, "No", "Morikawa"],
+        "Bill":    [4, 2, 3, "No", 3, -10, 2, "No", "McIlroy"],
+        "Barry":   [10, 3, 3, "Yes", 5, -10, 2, "No", "McIlroy"],
+        "Zach":    [8, 3, 2, "Yes", 3, -13, 1, "No", "Åberg"],
+        "Graydon": [9, 3, 3, "No", 0, -19, 2, "No", "Scheffler"],
+        "Shane":   [8, 2, 3, "No", 2, -12, 2, "No", "McIlroy"],
+        "Brandon": [9, 3, 3, "No", 4, -13, 2, "No", "Koepka"],
+        "Jamie":   [9, 3, 5, "No", 2, -17, 2, "No", "Scheffler"]
+    }
+}
+
+def evaluate_pool(pool_name):
+    print("\nCorrect Answers:")
+    for i, question in enumerate(prop_questions):
+        print(f"- {question}: {actual_answers[i]}")
+
+    print(f"\n🏆 {pool_name} Pool Leaderboard 🏆")
+    leaderboard = []
+    for participant, guesses in prop_answers[pool_name].items():
+        score = 0
+        for i, guess in enumerate(guesses):
+            # Standardize both for comparison
+            guess_str = str(guess).strip().lower()
+            actual_str = str(actual_answers[i]).strip().lower()
+            if guess_str == actual_str:
+                score += 1
+        leaderboard.append((participant, score))
+
+    leaderboard.sort(key=lambda x: x[1], reverse=True)
+    for rank, (name, score) in enumerate(leaderboard, 1):
+        print(f"{rank}. {name} - {score} correct")
+
+evaluate_pool(active_pool) #(current_pool)
