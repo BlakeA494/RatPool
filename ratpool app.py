@@ -5,9 +5,9 @@ from poolcode import participant_picks_all, player_stats, calculate_earnings
 
 st.title("🏆 PGA Championship 2025 Pool Leaderboard")
 
-active_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
+current_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
 
-participant_picks = participant_picks_all[active_pool]
+participant_picks = participant_picks_all[current_pool]
 
 st.markdown("## Each Participant's Picks and Earnings")
 
@@ -38,7 +38,7 @@ for name, picks in participant_picks.items():
 
 leaderboard.sort(key=lambda x: x[1], reverse=True)
 
-st.markdown(f"## 🏆 {active_pool} Pool Leaderboard 🏆")
+st.markdown(f"## 🏆 {current_pool} Pool Leaderboard 🏆")
 
 for rank, (name, purse) in enumerate(leaderboard, start=1):
     st.markdown(f"{rank}. **{name}** - ${purse:,.2f}")
