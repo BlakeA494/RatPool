@@ -57,10 +57,6 @@ if view_option == "Pickem Leaderboard":
 
 # === Prop Bets Leaderboard View ===
 elif view_option == "Prop Bets Leaderboard":
-    st.markdown("## Correct Answers:")
-    for i, question in enumerate(prop_questions):
-        st.markdown(f"- {question}: **{actual_answers[i]}**")
-
     st.markdown(f"## 🏆 {current_pool} Prop Bets Leaderboard 🏆")
     leaderboard = []
     for participant, guesses in prop_answers[current_pool].items():
@@ -76,3 +72,9 @@ elif view_option == "Prop Bets Leaderboard":
 
     for rank, (name, score) in enumerate(leaderboard, 1):
         st.markdown(f"{rank}. **{name}** - {score} correct")
+    
+    st.markdown("## Correct Answers:")
+    for i, question in enumerate(prop_questions):
+        st.markdown(f"- {question}: **{actual_answers[i]}**")
+
+    
