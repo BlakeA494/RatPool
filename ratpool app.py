@@ -3,7 +3,7 @@
 import streamlit as st
 from poolcode import participant_picks_all, player_stats, calculate_earnings
 
-st.title("🏆 PGA Championship 2025 Pool Leaderboard")
+st.title("🏌️‍♂️PGA Championship 2025 Pool Leaderboard⛳️")
 
 current_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
 
