@@ -3,12 +3,12 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from collections import defaultdict
 
-#https://ratpool.streamlit.app/
+
 ###################################################################################################################################################
 #In between these lines is everything that must be changed year-year
 
 # === CONFIG: TOGGLE BETWEEN POOLS HERE ===
-active_pool = "Framily"  # Change to "Queen's", or "Framily" as needed
+active_pool = "Queen's"  # Change to "Queen's", or "Framily" as needed
 
 # === All participant picks across both pools ===
 participant_picks_all = {
@@ -167,13 +167,14 @@ for player, (score_str, pos_str) in player_stats_live.items():
 
 # === Purse Payouts ===============================================================================================================================
 Payout = [
-    3600000, 2160000, 1360000, 960000, 800000, 714000, 668000, 624000, 582000, 543000, 
-    504000, 468000, 434000, 401000, 371000, 343000, 316000, 291000, 268000, 247000, 
-    228000, 211000, 196000, 181000, 167000, 153000, 147000, 141000, 135000, 130000, 
-    124000, 119000, 114000, 109000, 104000, 100000, 95000, 91000, 87000, 83000, 
-    79000, 75000, 71000, 68000, 64000, 60000, 56000, 53000, 51000, 49000, 
-    47000, 46000, 45000, 44000, 43000, 42000, 41000, 40000, 39000, 38000, 
-    37000, 36000, 35000, 34000, 33000, 32000, 31000, 30000, 29000, 28000
+  3420000, 2052000, 1292000, 912000, 760000, 683880, 640220, 598270, 558140, 519830,
+  483360, 448700, 415870, 384860, 355680, 328320, 302780, 279070, 257180, 237120,
+  218880, 202460, 187870, 176010, 164610, 153670, 143180, 133150, 123570, 114450,
+  107160, 100770, 95300, 90740, 87100, 83630, 80260, 76970, 73780, 70680,
+  67670, 64750, 61920, 59190, 56540, 53990, 51530, 49160, 46880, 44690,
+  42590, 40580, 38670, 36840, 35110, 33470, 31920, 30640, 29550, 28640,
+  27910, 27380, 26920, 26490, 26080, 25680, 25290, 24920, 24570, 24240,
+  23940, 23740, 23570, 23420
 ]
 
 # === Cut Line Threshold (Assuming 50th Place) ===
@@ -214,7 +215,6 @@ for name, picks in participant_picks.items():
                 print(f"  \t\t{player}: Score = {score}, Pos = {pos}, Purse = ${purse:,.2f}")
     print(f"\tTotal Purse for {name}: ${total_purse:,.2f}\n")
 
-#####################def run_pickem_leaderboard(active_pool):
 # === Leaderboard ===
 leaderboard = []
 for name, picks in participant_picks.items():
@@ -234,78 +234,48 @@ for rank, (name, purse) in enumerate(leaderboard, start=1):
     print(f"{rank}. {name} - ${purse:,.2f}")
 
 ################################################################################################################################
+#CALL OUT TO APP CODE:
+import streamlit as st
 
-#current_pool = "Framily" 
+# Assuming participant_picks_all, player_stats, and calculate_earnings are already defined somewhere in your code
 
-prop_questions = [
-    "How many LIV players will make the cut?",
-    "How many Canadian players will make the cut?",
-    "How many LIV players will be in the top 15 and ties?",
-    "Will there be a hole-in-one this week?",
-    "What will the cutline be?",
-    "What will be the winning score to par after all 4 days?",
-    "How large of a win margin will it be?",
-    "Will this be the winner's first major?",
-    "Who will win the 2025 PGA Championship?"
-]
+def display_pickem_results(active_pool):
+    participant_picks = participant_picks_all[active_pool]
 
-# Actual answers for scoring
-actual_answers = [
-    5,          #LIV players to make the cut
-    1,          #Canadian players to make the cut
-    1,          #LIV players in top 15 and ties
-    "Yes",       #Will there be a hole-in-one
-    1,          #What is the cutline
-    "-5",       #Winning score to par
-    1,          #Margin of victory
-    "Yes",       #First major?
-    "Davis & Gerard"    #Champion
-]
+    st.markdown("## Each Participant's Picks and Player Results")
 
-# Participants' answers (compact format)
-prop_answers = {
-    "Queen's": {
-        "Blake":   [6, 3, 3, "No", 3, -13, 2, "No", "Spieth"],
-        "Zain":    [5, 3, 3, "Yes", -1, -8, 1, "Yes", "Fleetwood"],
-        "Cam":     [9, 3, 4, "No", 1, -16, 1, "No", "McIlroy"],
-        "Dylan":   [7, 2, 4, "No", -2, -11, 2, "No", "Scheffler"],
-        "McBurney":[6, 2, 3, "No", 6, -5, 2, "No", "McIlroy"],
-        "Karyn":   [8, 2, 2, "No", 3, -13, 2, "No", "McIlroy"],
-        "Sean":    [4, 1, 2, "Yes", -2, -10, 2, "No", "Scheffler"],
-        "Shivam":  [4, 3, 1, "Yes", 3, -14, 2, "No", "Thomas"]
-    },
-    "Framily": {
-        "Blake":   [6, 2, 3, "No", 3, -13, 2, "No", "Morikawa"],
-        "Bill":    [4, 2, 3, "No", 3, -10, 2, "No", "McIlroy"],
-        "Barry":   [10, 3, 3, "Yes", 5, -10, 2, "No", "McIlroy"],
-        "Zach":    [8, 3, 2, "Yes", 3, -13, 1, "No", "Åberg"],
-        "Graydon": [9, 3, 3, "No", 0, -19, 2, "No", "Scheffler"],
-        "Shane":   [8, 2, 3, "No", 2, -12, 2, "No", "McIlroy"],
-        "Brandon": [9, 3, 3, "No", 4, -13, 2, "No", "Koepka"],
-        "Jamie":   [9, 3, 5, "No", 2, -17, 2, "No", "Scheffler"]
-    }
-}
+    for name, picks in participant_picks.items():
+        st.markdown(f"**{name}'s Picks and Earnings:**")
+        total_purse = 0
+        player_lines = []
+        for tier, selection in picks.items():
+            players = selection if isinstance(selection, list) else [selection]
+            for player in players:
+                if player in player_stats:
+                    score, pos = player_stats[player]
+                    purse = calculate_earnings(pos)
+                    total_purse += purse
+                    player_lines.append(f"- **{player}**: Score = `{score}`, Pos = `{pos}`, Purse = `${purse:,.2f}`")
+        if player_lines:
+            st.markdown("\n".join(player_lines))
+        st.markdown(f"**Total Purse for {name}:** `${total_purse:,.2f}`\n")
+        st.markdown("---")
 
-def evaluate_pool(pool_name):
-    print("\nCorrect Answers:")
-    for i, question in enumerate(prop_questions):
-        print(f"- {question}: {actual_answers[i]}")
-
-    print(f"\n🏆 {pool_name} Pool Leaderboard 🏆")
+    # === Leaderboard ===
     leaderboard = []
-    for participant, guesses in prop_answers[pool_name].items():
-        score = 0
-        for i, guess in enumerate(guesses):
-            # Standardize both for comparison
-            guess_str = str(guess).strip().lower()
-            actual_str = str(actual_answers[i]).strip().lower()
-            if guess_str == actual_str:
-                score += 1
-        leaderboard.append((participant, score))
+    for name, picks in participant_picks.items():
+        total_purse = 0
+        for tier, selection in picks.items():
+            players = selection if isinstance(selection, list) else [selection]
+            for player in players:
+                if player in player_stats:
+                    _, pos = player_stats[player]
+                    total_purse += calculate_earnings(pos)
+        leaderboard.append((name, total_purse))
 
     leaderboard.sort(key=lambda x: x[1], reverse=True)
-    for rank, (name, score) in enumerate(leaderboard, 1):
-        print(f"{rank}. {name} - {score} correct")
 
-evaluate_pool(active_pool) #(current_pool)
+    st.markdown(f"## 🏆 {active_pool} Pool Leaderboard 🏆")
+    for rank, (name, purse) in enumerate(leaderboard, start=1):
+        st.markdown(f"**{rank}. {name}** — `${purse:,.2f}`")
 
