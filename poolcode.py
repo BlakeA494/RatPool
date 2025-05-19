@@ -298,11 +298,11 @@ prop_questions = [
 actual_answers = [
     7,          #LIV players to make the cut
     2,          #Canadian players to make the cut
-    2,          #LIV players in top 15 and ties
+    3,          #LIV players in top 15 and ties
     "Yes",       #Will there be a hole-in-one
     1,          #What is the cutline
     "-11",       #Winning score to par
-    3,          #Margin of victory
+    5,          #Margin of victory
     "No",       #First major?
     "Scheffler"    #Champion
 ]
