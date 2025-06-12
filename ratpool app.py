@@ -36,7 +36,7 @@ if view_option == "Pickem Leaderboard":
 
     leaderboard.sort(key=lambda x: x[1], reverse=True)
 
-    st.markdown(f"## 🏆 {current_pool} Pickem Leaderboard 🏆")
+    st.markdown(f"## 🏆 {current_pool} Leaderboard 🏆")
     for rank, (name, purse) in enumerate(leaderboard, start=1):
         st.markdown(f"{rank}. **{name}** - ${purse:,.2f}")
     
