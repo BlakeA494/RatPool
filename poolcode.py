@@ -8,62 +8,54 @@ from collections import defaultdict
 #In between these lines is everything that must be changed year-year
 
 # === CONFIG: TOGGLE BETWEEN POOLS HERE ===
-active_pool = "Framily"  # Change to "Queen's", or "Framily" as needed
+active_pool = "Queen's"  # Change to "Queen's", or "Framily" as needed
+###################################################################################################################################################
+# === Load pool data from Excel files ===
+def load_pool_data_from_csv(file_path):
+    df = pd.read_excel(file_path)
 
-# === All participant picks across both pools ===
+    participant_picks = {}
+    prop_answers = {}
+
+    pick_columns = df.columns[2:13].tolist()  # Adjust if needed
+
+    prop_columns = df.columns[13:22].tolist()  # Adjust if needed
+
+    for _, row in df.iterrows():
+        name = row["Name:"].strip()
+
+        picks = {}
+        for col in pick_columns:
+            tier = col.replace(":", "").strip()
+            selection = row[col]
+            if pd.isnull(selection):
+                continue
+            if "," in str(selection):
+                picks[tier] = [player.strip() for player in str(selection).split(",")]
+            else:
+                picks[tier] = selection.strip()
+        participant_picks[name] = picks
+
+        props = []
+        for col in prop_columns:
+            props.append(row[col])
+        prop_answers[name] = props
+
+    return participant_picks, prop_answers
+
+# Load both pools
+framily_picks, framily_props = load_pool_data_from_csv("US Open 2025 Fantasy (Responses).xlsx")
+queens_picks, queens_props = load_pool_data_from_csv("US Open 2025 Fantasy - gen (Responses).xlsx")
+
+# Build final data structures
 participant_picks_all = {
-    "Framily": {
-        "Blake": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Brooks Koepka", "Tier 4": "Shane Lowry", "Tier 5": "Sepp Straka", "Tier 6": "Tony Finau",
-                  "Tier 7": "Patrick Reed", "Tier 8": "Adam Scott", "Tier 9": "Taylor Pendrith", "Tier 10": ["Lucas Glover", "Si Woo Kim"], "Top Amateur/CFT": "Tyler Collet"
-        },
-        "Bill": {"Tier 1": "Rory McIlroy", "Tier 2": "Justin Thomas", "Tier 3": "Jon Rahm", "Tier 4": "Jordan Spieth", "Tier 5": "Jason Day", "Tier 6": "Tony Finau",
-                  "Tier 7": "Patrick Reed", "Tier 8": "Dustin Johnson", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Rickie Fowler", "Sergio Garcia"], "Top Amateur/CFT": "Bobby Gates"
-        },
-        "Barry": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Jon Rahm", "Tier 4": "Shane Lowry", "Tier 5": "Min Woo Lee", "Tier 6": "Wydham Clark",
-                  "Tier 7": "Sahith Theegala", "Tier 8": "Matt Fitzpatrick", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Sam Burns", "Rickie Fowler"], "Top Amateur/CFT": "Brian Bergstol"
-        },
-        "Zach": {"Tier 1": "Scottie Scheffler", "Tier 2": "Ludvig Åberg", "Tier 3": "Jon Rahm", "Tier 4": "Corey Conners", "Tier 5": "Sepp Straka", "Tier 6": "Will Zalatoris",
-                  "Tier 7": "Patrick Reed", "Tier 8": "Dustin Johnson", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Si Woo Kim", "Keegan Bradley"], "Top Amateur/CFT": "Ryan Lenahan"
-        },
-        "Graydon": {"Tier 1": "Scottie Scheffler", "Tier 2": "Ludvig Åberg", "Tier 3": "Hideki Matsuyama", "Tier 4": "Viktor Hovland", "Tier 5": "Min Woo Lee", "Tier 6": "Russell Henley",
-                  "Tier 7": "Max Homa", "Tier 8": "Akshay Bhatia", "Tier 9": "Nick Taylor", "Tier 10": ["Lucas Glover", "Robert Macintyre"], "Top Amateur/CFT": "Justin Hicks"
-        },
-        "Shane": {"Tier 1": "Rory McIlroy", "Tier 2": "Bryson DeChambeau", "Tier 3": "Jon Rahm", "Tier 4": "Jordan Spieth", "Tier 5": "Min Woo Lee", "Tier 6": "Tony Finau",
-                  "Tier 7": "Cameron Smith", "Tier 8": "Adam Scott", "Tier 9": "Nick Taylor", "Tier 10": ["Cameron Davis", "Keegan Bradley"], "Top Amateur/CFT": "Jesse Droemer"
-        },
-        "Brandon": {"Tier 1": "Scottie Scheffler", "Tier 2": "Xander Schauffele", "Tier 3": "Brooks Koepka", "Tier 4": "Shane Lowry", "Tier 5": "Min Woo Lee", "Tier 6": "Will Zalatoris",
-                  "Tier 7": "Max Homa", "Tier 8": "Adam Scott", "Tier 9": "Nick Taylor", "Tier 10": ["Rickie Fowler", "Keegan Bradley"], "Top Amateur/CFT": "Dylan Newman"
-        },
-        "Jamie": {"Tier 1": "Scottie Scheffler", "Tier 2": "Justin Thomas", "Tier 3": "Brooks Koepka", "Tier 4": "Viktor Hovland", "Tier 5": "Justin Rose", "Tier 6": "Will Zalatoris",
-                  "Tier 7": "Patrick Reed", "Tier 8": "Dustin Johnson", "Tier 9": "Adam Hadwin", "Tier 10": ["Rickie Fowler", "Sergio Garcia"], "Top Amateur/CFT": "Tyler Collet"
-        }
-    },
-    "Queen's": {
-        "Blake": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Brooks Koepka", "Tier 4": "Jordan Spieth", "Tier 5": "Jason Day", "Tier 6": "Russell Henley",
-                  "Tier 7": "Sahith Theegala", "Tier 8": "Adam Scott", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Rickie Fowler", "Si Woo Kim"], "Top Amateur/CFT": "Tyler Collet"
-        },
-        "Zain": {"Tier 1": "Scottie Scheffler", "Tier 2": "Bryson DeChambeau", "Tier 3": "Hideki Matsuyama", "Tier 4": "Tommy Fleetwood", "Tier 5": "Min Woo Lee", "Tier 6": "Tony Finau",
-                  "Tier 7": "Max Homa", "Tier 8": "Akshay Bhatia", "Tier 9": "Nick Taylor", "Tier 10": ["Cameron Young", "Rickie Fowler"], "Top Amateur/CFT": "Michael Block"
-        },
-        "Cam": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Joaquin Niemann", "Tier 4": "Corey Conners", "Tier 5": "Min Woo Lee", "Tier 6": "Wyndham Clark",
-                  "Tier 7": "Cameron Smith", "Tier 8": "Akshay Bhatia", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Aaron Rai", "Phil Mickelson"], "Top Amateur/CFT": "Michael Block"
-        },
-        "Dylan": {"Tier 1": "Scottie Scheffler", "Tier 2": "Bryson DeChambeau", "Tier 3": "Hideki Matsuyama", "Tier 4": "Jordan Spieth", "Tier 5": "Justin Rose", "Tier 6": "Russell Henley",
-                  "Tier 7": "Patrick Reed", "Tier 8": "Matt Fitzpatrick", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Sam Burns", "Keegan Bradley"], "Top Amateur/CFT": "Greg Koch"
-        },
-        "McBurney": {"Tier 1": "Rory McIlroy", "Tier 2": "Justin Thomas", "Tier 3": "Brooks Koepka", "Tier 4": "Jordan Spieth", "Tier 5": "Min Woo Lee", "Tier 6": "Will Zalatoris",
-                  "Tier 7": "Patrick Reed", "Tier 8": "Akshay Bhatia", "Tier 9": "Taylor Pendrith", "Tier 10": ["Byeong-Hun An", "Sam Burns"], "Top Amateur/CFT": "Michael Block"
-        },
-        "Karyn": {"Tier 1": "Rory McIlroy", "Tier 2": "Ludvig Åberg", "Tier 3": "Hideki Matsuyama", "Tier 4": "Corey Conners", "Tier 5": "Justin Rose", "Tier 6": "Tom Kim",
-                  "Tier 7": "Max Homa", "Tier 8": "Matt Fitzpatrick", "Tier 9": "Nick Taylor", "Tier 10": ["Rickie Fowler", "Sam Burns"], "Top Amateur/CFT": "Michael Block"
-        },
-        "Sean": {"Tier 1": "Scottie Scheffler", "Tier 2": "Justin Thomas", "Tier 3": "Hideki Matsuyama", "Tier 4": "Shane Lowry", "Tier 5": "Sepp Straka", "Tier 6": "Tom Kim",
-                  "Tier 7": "Sahith Theegala", "Tier 8": "Akshay Bhatia", "Tier 9": "Adam Hadwin", "Tier 10": ["Nicolai Højgaard", "Rasmus Højgaard"], "Top Amateur/CFT": "Larkin Gross"
-        },
-        "Shivam": {"Tier 1": "Rory McIlroy", "Tier 2": "Justin Thomas", "Tier 3": "Hideki Matsuyama", "Tier 4": "Corey Conners", "Tier 5": "Justin Rose", "Tier 6": "Will Zalatoris",
-                  "Tier 7": "Sahith Theegala", "Tier 8": "Akshay Bhatia", "Tier 9": "Mackenzie Hughes", "Tier 10": ["Austin Eckroat", "Cameron Young"], "Top Amateur/CFT": "Rupe Taylor"
-        }
-    }
+    "Framily": framily_picks,
+    "Queen's": queens_picks
+}
+
+prop_answers = {
+    "Framily": framily_props,
+    "Queen's": queens_props
 }
 
 # === Fetch live leaderboard data from ESPN ===
