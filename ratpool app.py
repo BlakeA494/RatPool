@@ -18,6 +18,9 @@ current_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
 # View toggle
 view_option = st.radio("Select View", ["Pickem Leaderboard", "Prop Bets Leaderboard"])
 
+if st.button("Refresh Data"):
+    st.cache_data.clear()
+
 # === Pickem Leaderboard View ===
 if view_option == "Pickem Leaderboard":
     participant_picks = participant_picks_all[current_pool]
