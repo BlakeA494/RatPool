@@ -17,9 +17,9 @@ def load_pool_data_from_csv(file_path):
     participant_picks = {}
     prop_answers = {}
 
-    pick_columns = df.columns[2:13].tolist()  # Adjust if needed
+    pick_columns = df.columns[2:14].tolist()  # Adjust if needed
 
-    prop_columns = df.columns[13:22].tolist()  # Adjust if needed
+    prop_columns = df.columns[15:25].tolist()  # Adjust if needed
 
     for _, row in df.iterrows():
         name = row["Name:"].strip()
