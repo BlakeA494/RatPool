@@ -59,7 +59,7 @@ prop_answers = {
 }
 
 # === Fetch live leaderboard data from ESPN ===
-def fetch_leaderboard_from_html(event_id="401703511"): #<-CHANGE THE TOURNAMENT ID BASED OFF ESPN WEBSITE***
+def fetch_leaderboard_from_html(event_id="401703515"): #<-CHANGE THE TOURNAMENT ID BASED OFF ESPN WEBSITE***
 ###################################################################################################################################################
     url = f"https://www.espn.com/golf/leaderboard?tournamentId={event_id}"
     headers = {
@@ -112,17 +112,24 @@ df = fetch_leaderboard_from_html()
 
 # Parse the necessary columns for player names, scores, and positions
 player_stats_live = {}
-for index, row in df.iterrows():
-    player_name = row['PLAYER']
-    score = row['SCORE']
-    position = row['POS']
-
-    # Format the score and position before storing
-    formatted_score = format_score(score)
-    formatted_position = format_position(position)
-
-    # Store the player's stats in the dictionary
-    player_stats_live[player_name] = [formatted_score, formatted_position]
+if 'TEE TIME' in df.columns:
+    # Pre-tournament mode
+    for index, row in df.iterrows():
+        player_name = row['PLAYER']
+        tee_time = row['TEE TIME']
+        # Store tee time instead of score/position
+        player_stats_live[player_name] = [tee_time, ""]
+elif 'SCORE' in df.columns:
+    # Live leaderboard mode
+    for index, row in df.iterrows():
+        player_name = row['PLAYER']
+        score = row['SCORE']
+        position = row['POS']
+        formatted_score = format_score(score)
+        formatted_position = format_position(position)
+        player_stats_live[player_name] = [formatted_score, formatted_position]
+else:
+    print("Unexpected leaderboard structure — no SCORE or TEE TIME columns found.")
 
 # === Update pool player stats with live leaderboard data ===
 updated_player_stats = defaultdict(dict)
