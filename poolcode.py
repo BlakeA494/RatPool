@@ -172,7 +172,7 @@ Payout = [
 ]
 
 # === Cut Line Threshold (Assuming 50th Place) ===
-CUT_LINE_POSITION = 74 #<-MAYBE CHECK THIS VALUE depending on ties ################################################################################
+CUT_LINE_POSITION = 60 #<-MAYBE CHECK THIS VALUE depending on ties ################################################################################
 
 # === Purse Calculation with Tie Handling ===
 position_groups = defaultdict(list)
@@ -244,16 +244,16 @@ prop_questions = [
 
 # Actual answers for scoring
 actual_answers = [
-    7,          #LIV players to make the cut
-    2,          #Canadian players to make the cut
-    3,          #LIV players in top 20 and ties
-    "Yes",       #Will there be a hole-in-one
-    1,          #What is the cutline
-    "-11",       #Winning score to par
-    5,          #Margin of victory
-    "No",       #First major?
-    "USA",       #Ryder/President's cup team
-    "Scheffler"    #Champion
+    0,          #LIV players to make the cut
+    0,          #Canadian players to make the cut
+    0,          #LIV players in top 20 and ties
+    0,       #Will there be a hole-in-one
+    0,          #What is the cutline
+    0,       #Winning score to par
+    0,          #Margin of victory
+    0,       #First major?
+    0,       #Ryder/President's cup team
+    0    #Champion
 ]
 
 def evaluate_pool(pool_name):
