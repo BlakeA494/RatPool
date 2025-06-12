@@ -10,7 +10,7 @@ from poolcode import (
 )
 
 # App title
-st.title("🏌️‍♂️PGA Championship 2025 Pool Leaderboard⛳️")
+st.title("🏌️‍♂️US Open 2025 Pool Leaderboard⛳️")
 
 # Pool selector
 current_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
