@@ -19,7 +19,7 @@ def load_pool_data_from_csv(file_path):
 
     pick_columns = df.columns[2:15].tolist()  # Adjust if needed
 
-    prop_columns = df.columns[15:24].tolist()  # Adjust if needed
+    prop_columns = df.columns[16:25].tolist()  # Adjust if needed
 
     for _, row in df.iterrows():
         name = row["Name:"].strip()
