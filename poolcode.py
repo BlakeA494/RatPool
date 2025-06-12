@@ -136,14 +136,9 @@ updated_player_stats = defaultdict(dict)
 
 for participant, picks in participant_picks_all[active_pool].items():
     for tier, pick in picks.items():
-        if isinstance(pick, list):  # Multi-player picks
-            updated_player_stats[participant][tier] = {
-                player: player_stats_live.get(player, ["N/A", "N/A"]) for player in pick
-            }
-        else:  # Single-player picks
-            updated_player_stats[participant][tier] = {
-                pick: player_stats_live.get(pick, ["N/A", "N/A"])
-            }
+        updated_player_stats[participant][tier] = {
+            pick: player_stats_live.get(pick, ["N/A", "N/A"])
+        }
 player_stats = {}
 
 for player, (score_str, pos_str) in player_stats_live.items():
