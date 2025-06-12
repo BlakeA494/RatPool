@@ -44,8 +44,8 @@ def load_pool_data_from_csv(file_path):
     return participant_picks, prop_answers
 
 # Load both pools
-framily_picks, framily_props = load_pool_data_from_csv("US Open 2025 Fantasy (Responses).xlsx")
-queens_picks, queens_props = load_pool_data_from_csv("US Open 2025 Fantasy - gen (Responses).xlsx")
+framily_picks, framily_props = load_pool_data_from_csv("US Open 2025 Fantasy - Framily.xlsx")
+queens_picks, queens_props = load_pool_data_from_csv("US Open 2025 Fantasy - Queens.xlsx")
 
 # Build final data structures
 participant_picks_all = {
