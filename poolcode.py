@@ -256,7 +256,6 @@ actual_answers = [
 
 def evaluate_pool(pool_name):
     print("\nCorrect Answers:")
-    print("\n As of Fri - 7PM")
     for i, question in enumerate(prop_questions):
         print(f"- {question}: {actual_answers[i]}")
 
