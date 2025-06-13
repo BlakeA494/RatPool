@@ -10,16 +10,15 @@ from collections import defaultdict
 # === CONFIG: TOGGLE BETWEEN POOLS HERE ===
 active_pool = "Queen's"  # Change to "Queen's", or "Framily" as needed
 ###################################################################################################################################################
-# === Load pool data from Excel files ===
+@st.cache_data
 def load_pool_data_from_csv(file_path):
     df = pd.read_excel(file_path)
 
     participant_picks = {}
     prop_answers = {}
 
-    pick_columns = df.columns[2:15].tolist()  # Adjust if needed
-
-    prop_columns = df.columns[16:25].tolist()  # Adjust if needed
+    pick_columns = df.columns[2:15].tolist()
+    prop_columns = df.columns[16:25].tolist()
 
     for _, row in df.iterrows():
         name = row["Name:"].strip()
@@ -43,11 +42,16 @@ def load_pool_data_from_csv(file_path):
 
     return participant_picks, prop_answers
 
+
+# Button to clear cache
+if st.button("🔄 Refresh Data"):
+    st.cache_data.clear()
+
 # Load both pools
 framily_picks, framily_props = load_pool_data_from_csv("US Open 2025 Fantasy - Framily.xlsx")
 queens_picks, queens_props = load_pool_data_from_csv("US Open 2025 Fantasy - Queens.xlsx")
 
-# Build final data structures
+# Now build your structures as usual
 participant_picks_all = {
     "Framily": framily_picks,
     "Queen's": queens_picks
@@ -57,6 +61,7 @@ prop_answers = {
     "Framily": framily_props,
     "Queen's": queens_props
 }
+
 
 # === Fetch live leaderboard data from ESPN ===
 def fetch_leaderboard_from_html(event_id="401703515"): #<-CHANGE THE TOURNAMENT ID BASED OFF ESPN WEBSITE***
