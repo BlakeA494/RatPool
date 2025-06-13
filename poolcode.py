@@ -45,7 +45,7 @@ def load_pool_data_from_csv(file_path):
 
 
 # Button to clear cache
-if st.button("🔄 Refresh Data"):
+if st.button("🔄 Refresh Data", key="refresh button"):
     st.cache_data.clear()
 
 # Load both pools
