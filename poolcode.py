@@ -250,16 +250,16 @@ prop_questions = [
 
 # Actual answers for scoring
 actual_answers = [
-    7,          #LIV players to make the cut
+    6,          #LIV players to make the cut
     4,          #Canadian players to make the cut
-    2,          #LIV players in top 20 and ties
-    "NO",       #Will there be a hole-in-one
-    3,          #What is the cutline
-    -4,       #Winning score to par
+    3,          #LIV players in top 20 and ties
+    "YES",       #Will there be a hole-in-one
+    6,          #What is the cutline
+    -3,       #Winning score to par
     1,          #Margin of victory
     "YES, first time U.S. Open winner",       #First major?
     "USA🇺🇸",       #Ryder/President's cup team
-    "J.J. Spaun"   #Champion
+    "Sam Burns"   #Champion
 ]
 
 def evaluate_pool(pool_name):
