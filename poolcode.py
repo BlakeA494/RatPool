@@ -253,12 +253,12 @@ actual_answers = [
     7,          #LIV players to make the cut
     4,          #Canadian players to make the cut
     2,          #LIV players in top 20 and ties
-    "No",       #Will there be a hole-in-one
+    "NO",       #Will there be a hole-in-one
     3,          #What is the cutline
     -4,       #Winning score to par
     1,          #Margin of victory
-    "Yes",       #First major?
-    "USA",       #Ryder/President's cup team
+    "YES, first time U.S. Open winner",       #First major?
+    "USA🇺🇸",       #Ryder/President's cup team
     "J.J. Spaun"   #Champion
 ]
 
