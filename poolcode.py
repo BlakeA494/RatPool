@@ -6,11 +6,6 @@ from collections import defaultdict
 
 
 ###################################################################################################################################################
-#In between these lines is everything that must be changed year-year
-
-# === CONFIG: TOGGLE BETWEEN POOLS HERE ===
-active_pool = "Queen's"  # Change to "Queen's", or "Framily" as needed
-###################################################################################################################################################
 @st.cache_data
 def load_pool_data_from_csv(file_path):
     df = pd.read_excel(file_path)
@@ -19,7 +14,7 @@ def load_pool_data_from_csv(file_path):
     prop_answers = {}
 
     pick_columns = df.columns[2:15].tolist()
-    prop_columns = df.columns[16:25].tolist()
+    prop_columns = df.columns[15:25].tolist()
 
     for _, row in df.iterrows():
         name = row["Name:"].strip()
@@ -42,11 +37,6 @@ def load_pool_data_from_csv(file_path):
         prop_answers[name] = props
 
     return participant_picks, prop_answers
-
-
-# Button to clear cache
-#if st.button("🔄 Refresh Data", key="refresh button"):
-#    st.cache_data.clear()
 
 # Load both pools
 framily_picks, framily_props = load_pool_data_from_csv("US Open 2025 Fantasy - Framily.xlsx")
@@ -264,6 +254,7 @@ actual_answers = [
 
 def evaluate_pool(pool_name):
     print("\nCorrect Answers:")
+    print("\n As of Fri - 7PM")
     for i, question in enumerate(prop_questions):
         print(f"- {question}: {actual_answers[i]}")
 
