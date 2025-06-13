@@ -78,7 +78,7 @@ elif view_option == "Prop Bets Leaderboard":
         st.markdown(f"{rank}. **{name}** - {score} correct")
     
     st.markdown("## Correct Answers:")
-    st.markdown("# As of Fri - 7pm")
+    st.markdown(" As of Fri - 7pm")
     for i, question in enumerate(prop_questions):
         st.markdown(f"- {question}: **{actual_answers[i]}**")
 
