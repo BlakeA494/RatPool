@@ -45,8 +45,8 @@ def load_pool_data_from_csv(file_path):
 
 
 # Button to clear cache
-if st.button("🔄 Refresh Data", key="refresh button"):
-    st.cache_data.clear()
+#if st.button("🔄 Refresh Data", key="refresh button"):
+#    st.cache_data.clear()
 
 # Load both pools
 framily_picks, framily_props = load_pool_data_from_csv("US Open 2025 Fantasy - Framily.xlsx")
