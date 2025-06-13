@@ -20,7 +20,7 @@ view_option = st.radio("Select View", ["Pickem Leaderboard", "Prop Bets Leaderbo
 
 if st.button("🔄 Refresh Data"):
     st.cache_data.clear()
-    st.experimental_rerun()
+    st.rerun()
 
 # === Pickem Leaderboard View ===
 if view_option == "Pickem Leaderboard":
