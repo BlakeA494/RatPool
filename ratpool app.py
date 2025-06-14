@@ -20,7 +20,7 @@ view_option = st.radio("Select View", ["Pickem Leaderboard", "Prop Bets Leaderbo
 
 if st.button("🔄 Refresh Leaderboard"):
     st.session_state["player_stats"] = get_live_player_stats()
-    st.experimental_rerun()
+    st.success("Leaderboard refreshed.")
 
 # On first page load
 if "player_stats" not in st.session_state:
