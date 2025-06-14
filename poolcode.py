@@ -125,14 +125,17 @@ def get_live_player_stats():
     return player_stats_live
 
 # === Update pool player stats with live leaderboard data ===
-updated_player_stats = defaultdict(dict)
+def get_updated_player_stats(participant_picks_all, active_pool):
+    player_stats_live = get_live_player_stats()
 
-for participant, picks in participant_picks_all[active_pool].items():
-    for tier, pick in picks.items():
-        updated_player_stats[participant][tier] = {
-            pick: player_stats_live.get(pick, ["N/A", "N/A"])
-        }
-player_stats = {}
+    updated_player_stats = defaultdict(dict)
+
+    for participant, picks in participant_picks_all[active_pool].items():
+        for tier, pick in picks.items():
+            updated_player_stats[participant][tier] = {
+                pick: player_stats_live.get(pick, ["N/A", "N/A"])
+            }
+return updated_player_stats
 
 for player, (score_str, pos_str) in player_stats_live.items():
     # Convert score to integer; treat "E" (even) as 0
