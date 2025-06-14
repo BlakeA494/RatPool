@@ -175,6 +175,13 @@ Payout = [
 # === Cut Line Threshold (Assuming 50th Place) ===
 CUT_LINE_POSITION = 60 #<-MAYBE CHECK THIS VALUE depending on ties ################################################################################
 
+player_stats = build_player_stats()
+
+# === Purse Calculation with Tie Handling ===
+position_groups = defaultdict(list)
+for player, (_, pos) in player_stats.items():
+    position_groups[pos].append(player)
+
 # === Purse Calculation with Tie Handling ===
 position_groups = defaultdict(list)
 for player, (_, pos) in player_stats.items():
