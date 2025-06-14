@@ -22,9 +22,9 @@ view_option = st.radio("Select View", ["Pickem Leaderboard", "Prop Bets Leaderbo
 if "player_stats" not in st.session_state:
     st.session_state["player_stats"] = build_player_stats()
 
-if st.button("🔄 Refresh Leaderboard"):
-    st.session_state["player_stats"] = build_player_stats()
-    st.success("Leaderboard refreshed.")
+#if st.button("🔄 Refresh Leaderboard"):
+ #   st.session_state["player_stats"] = build_player_stats()
+  #  st.success("Leaderboard refreshed.")
 
 
 
