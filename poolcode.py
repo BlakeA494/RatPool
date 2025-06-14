@@ -180,7 +180,7 @@ Payout = [
 ]
 
 # === Cut Line Threshold (Assuming 50th Place) ===
-CUT_LINE_POSITION = 60 #<-MAYBE CHECK THIS VALUE depending on ties ################################################################################
+CUT_LINE_POSITION = 67 #<-MAYBE CHECK THIS VALUE depending on ties ################################################################################
 
 player_stats = build_player_stats()
 
