@@ -1,13 +1,11 @@
 import requests
 import pandas as pd
-import streamlit as st
+#import streamlit as st
 from bs4 import BeautifulSoup
 from collections import defaultdict
 
 
-###################################################################################################################################################
-active_pool = "Framily"
-###################################################################################################################################################
+#@st.cache_data
 def load_pool_data_from_csv(file_path):
     df = pd.read_excel(file_path)
 
@@ -38,6 +36,7 @@ def load_pool_data_from_csv(file_path):
         prop_answers[name] = props
 
     return participant_picks, prop_answers
+
 
 # Load both pools
 framily_picks, framily_props = load_pool_data_from_csv("US Open 2025 Fantasy - Framily.xlsx")
@@ -103,7 +102,32 @@ def format_score(score):
 # Function to clean up position (remove 'T')
 def format_position(position):
     return position.lstrip('T')
+    '''
+# Example usage: Fetch live leaderboard data
+df = fetch_leaderboard_from_html()
 
+# Parse the necessary columns for player names, scores, and positions
+player_stats_live = {}
+if 'TEE TIME' in df.columns:
+    # Pre-tournament mode
+    for index, row in df.iterrows():
+        player_name = row['PLAYER']
+        tee_time = row['TEE TIME']
+        # Store tee time instead of score/position
+        player_stats_live[player_name] = [tee_time, ""]
+elif 'SCORE' in df.columns:
+    # Live leaderboard mode
+    for index, row in df.iterrows():
+        player_name = row['PLAYER']
+        score = row['SCORE']
+        position = row['POS']
+        formatted_score = format_score(score)
+        formatted_position = format_position(position)
+        player_stats_live[player_name] = [formatted_score, formatted_position]
+else:
+    print("Unexpected leaderboard structure — no SCORE or TEE TIME columns found.")
+return player_stats_live
+'''
 def get_live_player_stats():
     df = fetch_leaderboard_from_html()
 
@@ -123,42 +147,33 @@ def get_live_player_stats():
         print("Unexpected leaderboard structure.")
 
     return player_stats_live
-
 # === Update pool player stats with live leaderboard data ===
-def get_updated_player_stats(participant_picks_all, active_pool):
-    player_stats_live = get_live_player_stats()
+updated_player_stats = defaultdict(dict)
 
-    updated_player_stats = defaultdict(dict)
+for participant, picks in participant_picks_all[active_pool].items():
+    for tier, pick in picks.items():
+        updated_player_stats[participant][tier] = {
+            pick: player_stats_live.get(pick, ["N/A", "N/A"])
+        }
+player_stats = {}
 
-    for participant, picks in participant_picks_all[active_pool].items():
-        for tier, pick in picks.items():
-            updated_player_stats[participant][tier] = {
-                pick: player_stats_live.get(pick, ["N/A", "N/A"])
-            }
-    return updated_player_stats
+for player, (score_str, pos_str) in player_stats_live.items():
+    # Convert score to integer; treat "E" (even) as 0
+    try:
+        score = int(score_str)
+    except ValueError:
+        score = 0  # Handles "E" or any other non-integer string
 
-def build_player_stats():
-    player_stats_live = get_live_player_stats()
-    player_stats = {}
-
-    for player, (score_str, pos_str) in player_stats_live.items():
+    # Handle position
+    if pos_str in ["CUT", "WD"]:
+        position = pos_str
+    else:
         try:
-            score = int(score_str)
+            position = int(pos_str.replace('T', ''))
         except ValueError:
-            score = 0
+            position = 999
 
-        if pos_str in ["CUT", "WD"]:
-            position = pos_str
-        else:
-            try:
-                position = int(pos_str.replace('T', ''))
-            except ValueError:
-                position = 999
-
-        player_stats[player] = [score, position]
-
-    return player_stats
-
+    player_stats[player] = [score, position]
 
 # === Purse Payouts ===============================================================================================================================
 Payout = [
@@ -227,6 +242,9 @@ leaderboard.sort(key=lambda x: x[1], reverse=True)
 print(f"\n🏆 {active_pool} Pool Leaderboard 🏆")
 for rank, (name, purse) in enumerate(leaderboard, start=1):
     print(f"{rank}. {name} - ${purse:,.2f}")
+
+
+
 
 
 
