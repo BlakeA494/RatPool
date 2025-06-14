@@ -137,23 +137,28 @@ def get_updated_player_stats(participant_picks_all, active_pool):
             }
     return updated_player_stats
 
-for player, (score_str, pos_str) in player_stats_live.items():
-    # Convert score to integer; treat "E" (even) as 0
-    try:
-        score = int(score_str)
-    except ValueError:
-        score = 0  # Handles "E" or any other non-integer string
+def build_player_stats():
+    player_stats_live = get_live_player_stats()
+    player_stats = {}
 
-    # Handle position
-    if pos_str in ["CUT", "WD"]:
-        position = pos_str
-    else:
+    for player, (score_str, pos_str) in player_stats_live.items():
         try:
-            position = int(pos_str.replace('T', ''))
+            score = int(score_str)
         except ValueError:
-            position = 999
+            score = 0
 
-    player_stats[player] = [score, position]
+        if pos_str in ["CUT", "WD"]:
+            position = pos_str
+        else:
+            try:
+                position = int(pos_str.replace('T', ''))
+            except ValueError:
+                position = 999
+
+        player_stats[player] = [score, position]
+
+    return player_stats
+
 
 # === Purse Payouts ===============================================================================================================================
 Payout = [
