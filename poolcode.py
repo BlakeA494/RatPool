@@ -135,7 +135,7 @@ def get_updated_player_stats(participant_picks_all, active_pool):
             updated_player_stats[participant][tier] = {
                 pick: player_stats_live.get(pick, ["N/A", "N/A"])
             }
- return updated_player_stats
+    return updated_player_stats
 
 for player, (score_str, pos_str) in player_stats_live.items():
     # Convert score to integer; treat "E" (even) as 0
