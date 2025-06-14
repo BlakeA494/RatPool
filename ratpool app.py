@@ -19,14 +19,15 @@ current_pool = st.selectbox("Select Pool", ["Queen's", "Framily"])
 # View toggle
 view_option = st.radio("Select View", ["Pickem Leaderboard", "Prop Bets Leaderboard"])
 
-# Initialize player_stats in session state if not present
 if "player_stats" not in st.session_state:
-    st.session_state["player_stats"] = get_live_player_stats()
+    raw_stats = get_live_player_stats()
+    st.session_state["player_stats"] = build_player_stats(raw_stats)
 
-# Leaderboard refresh button
 if st.button("🔄 Refresh Leaderboard"):
-    st.session_state["player_stats"] = get_live_player_stats()
+    raw_stats = get_live_player_stats()
+    st.session_state["player_stats"] = build_player_stats(raw_stats)
     st.success("Leaderboard refreshed.")
+
 
 # Now safely assign for use
 player_stats = st.session_state["player_stats"]
