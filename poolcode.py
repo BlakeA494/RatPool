@@ -142,22 +142,29 @@ def build_player_stats():
     player_stats = {}
 
     for player, (score_str, pos_str) in player_stats_live.items():
+        # Parse score safely
         try:
             score = int(score_str)
-        except ValueError:
+        except (ValueError, TypeError):
             score = 0
 
+        # Normalize position
+        pos_str = str(pos_str).upper().strip() if pos_str else ""
+
         if pos_str in ["CUT", "WD"]:
-            position = pos_str
+            position = pos_str  # Keep special cases as strings
         else:
+            # Remove 'T' (for tied positions), then try to parse as int
             try:
                 position = int(pos_str.replace('T', ''))
             except ValueError:
+                # Unknown or malformed position, set a high number to treat as last place
                 position = 999
 
         player_stats[player] = [score, position]
 
     return player_stats
+
 
 
 # === Purse Payouts ===============================================================================================================================
