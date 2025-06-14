@@ -3,7 +3,6 @@ import streamlit as st
 from poolcode import (
     participant_picks_all,
     get_live_player_stats,
-    player_stats_live,
     calculate_earnings,
     prop_questions,
     actual_answers,
