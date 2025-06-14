@@ -152,7 +152,7 @@ def build_player_stats():
         pos_str = str(pos_str).upper().strip() if pos_str else ""
 
         if pos_str in ["CUT", "WD"]:
-            position = pos_str  # Keep special cases as strings
+            position = 999
         else:
             # Remove 'T' (for tied positions), then try to parse as int
             try:
@@ -265,7 +265,7 @@ actual_answers = [
     4,          #Canadian players to make the cut
     3,          #LIV players in top 20 and ties
     "YES",       #Will there be a hole-in-one
-    6,          #What is the cutline
+    7,          #What is the cutline
     -3,       #Winning score to par
     1,          #Margin of victory
     "YES, first time U.S. Open winner",       #First major?
