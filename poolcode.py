@@ -104,29 +104,25 @@ def format_score(score):
 def format_position(position):
     return position.lstrip('T')
 
-# Example usage: Fetch live leaderboard data
-df = fetch_leaderboard_from_html()
+def get_live_player_stats():
+    df = fetch_leaderboard_from_html()
 
-# Parse the necessary columns for player names, scores, and positions
-player_stats_live = {}
-if 'TEE TIME' in df.columns:
-    # Pre-tournament mode
-    for index, row in df.iterrows():
-        player_name = row['PLAYER']
-        tee_time = row['TEE TIME']
-        # Store tee time instead of score/position
-        player_stats_live[player_name] = [tee_time, ""]
-elif 'SCORE' in df.columns:
-    # Live leaderboard mode
-    for index, row in df.iterrows():
-        player_name = row['PLAYER']
-        score = row['SCORE']
-        position = row['POS']
-        formatted_score = format_score(score)
-        formatted_position = format_position(position)
-        player_stats_live[player_name] = [formatted_score, formatted_position]
-else:
-    print("Unexpected leaderboard structure — no SCORE or TEE TIME columns found.")
+    player_stats_live = {}
+    if 'TEE TIME' in df.columns:
+        for _, row in df.iterrows():
+            player_name = row['PLAYER']
+            tee_time = row['TEE TIME']
+            player_stats_live[player_name] = [tee_time, ""]
+    elif 'SCORE' in df.columns:
+        for _, row in df.iterrows():
+            player_name = row['PLAYER']
+            score = format_score(row['SCORE'])
+            pos = format_position(row['POS'])
+            player_stats_live[player_name] = [score, pos]
+    else:
+        print("Unexpected leaderboard structure.")
+
+    return player_stats_live
 
 # === Update pool player stats with live leaderboard data ===
 updated_player_stats = defaultdict(dict)
