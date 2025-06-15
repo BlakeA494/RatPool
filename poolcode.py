@@ -265,7 +265,7 @@ actual_answers = [
     3,          #LIV players in top 20 and ties
     "YES",       #Will there be a hole-in-one
     7,          #What is the cutline
-    -3,       #Winning score to par
+    -4,       #Winning score to par
     1,          #Margin of victory
     "YES, first time U.S. Open winner",       #First major?
     "USA🇺🇸",       #Ryder/President's cup team
